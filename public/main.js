@@ -4,10 +4,21 @@ class WeatherAPI {
     fetch(cityURL)
       .then(resp => resp.json())
       .then(weatherObj => {
+        function upperDescription(str) {
+          let splitArray = str.split(' ')
+          let upperArray = []
+          for (let i = 0; i < splitArray.length; i++) {
+            upperArray.push(
+              splitArray[i].charAt(0).toUpperCase() + splitArray[i].slice(1)
+            )
+          }
+          return upperArray.join(' ')
+        }
+        document.querySelector('.results-section').style.display = 'block'
         let displayWeather = new UpdateDOM()
         displayWeather.addForecastToDOM(
           `The weather in ${weatherObj.name} is:`,
-          weatherObj.weather[0].description,
+          upperDescription(weatherObj.weather[0].description),
           `Temperature: ${weatherObj.main.temp}°F`,
           `Min Temp: ${weatherObj.main.temp_min}°F`,
           `Max Temp: ${weatherObj.main.temp_max}°F`,
@@ -16,6 +27,10 @@ class WeatherAPI {
           'Sunrise: ' + moment.unix(weatherObj.sys.sunrise).format('LT'),
           'Sunset: ' + moment.unix(weatherObj.sys.sunset).format('LT')
         )
+        document.querySelector('.city-name-input').disabled = true
+        document.querySelector('.search-button').disabled = true
+        document.querySelector('.city-zip-input').disabled = true
+        document.querySelector('.search-zip-button').disabled = true
       })
   }
 
@@ -24,10 +39,21 @@ class WeatherAPI {
     fetch(zipURL)
       .then(resp => resp.json())
       .then(weatherObj => {
+        function upperDescription(str) {
+          let splitArray = str.split(' ')
+          let upperArray = []
+          for (let i = 0; i < splitArray.length; i++) {
+            upperArray.push(
+              splitArray[i].charAt(0).toUpperCase() + splitArray[i].slice(1)
+            )
+          }
+          return upperArray.join(' ')
+        }
+        document.querySelector('.results-section').style.display = 'block'
         let displayWeather = new UpdateDOM()
         displayWeather.addForecastToDOM(
           `The weather in ${weatherObj.name} is:`,
-          weatherObj.weather[0].description,
+          upperDescription(weatherObj.weather[0].description),
           `Temperature: ${weatherObj.main.temp}°F`,
           `Min Temp: ${weatherObj.main.temp_min}°F`,
           `Max Temp: ${weatherObj.main.temp_max}°F`,
@@ -36,6 +62,10 @@ class WeatherAPI {
           'Sunrise: ' + moment.unix(weatherObj.sys.sunrise).format('LT'),
           'Sunset: ' + moment.unix(weatherObj.sys.sunset).format('LT')
         )
+        document.querySelector('.city-name-input').disabled = true
+        document.querySelector('.search-button').disabled = true
+        document.querySelector('.city-zip-input').disabled = true
+        document.querySelector('.search-zip-button').disabled = true
       })
   }
 }

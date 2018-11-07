@@ -70,7 +70,7 @@ button:hover {
 .results-section {
   display: flex;
   align-items: center;
-  /* display: none; */
+  display: none;
 }
 
 .weather-ul {
